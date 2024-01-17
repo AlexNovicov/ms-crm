@@ -1,0 +1,15 @@
+extend type Mutation {
+
+    "Создание crm статуса"
+    create_crm_status(input: CrmStatusInput! @spread): CrmStatus @create
+
+    "Изменение статуса"
+    update_crm_status(
+        id: ID!
+        input: CrmStatusInput! @spread
+    ): CrmStatus @update
+
+    "Удаление статуса"
+    delete_crm_status(id: ID!): CrmStatus @delete
+
+}

@@ -1,0 +1,107 @@
+git_branch: master
+
+actions:
+  deploy:
+    presets:
+      - deploy
+
+  install:
+    presets:
+      - laravel_install
+
+  autoloader:
+    presets:
+      - laravel_autoloader
+
+  cache:
+    presets:
+      - laravel_cache
+      - laravel_lighthouse_cache_clear
+
+  cache_clear:
+    presets:
+      - laravel_cache_clear
+      - laravel_lighthouse_cache_clear
+
+  migration:
+    presets:
+      - laravel_migration
+
+  migration_rollback:
+    presets:
+      - laravel_migration_rollback
+
+  restart:
+    presets:
+      - laravel_horizon
+
+    console_commands:
+      - sudo supervisorctl restart octane
+
+macros:
+  1:
+    description: deploy, cache
+    actions:
+      - deploy
+      - cache
+
+  2:
+    description: deploy, restart
+    actions:
+      - deploy
+      - restart
+
+  3:
+    description: deploy, cache, restart
+    actions:
+      - deploy
+      - cache
+      - restart
+
+  4:
+    description: deploy, install, cache, restart
+    actions:
+      - deploy
+      - install
+      - cache
+      - restart
+
+  10:
+    description: deploy
+    actions:
+      - deploy
+
+  11:
+    description: cache
+    actions:
+      - cache
+
+  12:
+    description: restart
+    actions:
+      - restart
+
+  13:
+    description: install
+    actions:
+      - install
+
+  14:
+    description: migration
+    actions:
+      - migration
+
+  15:
+    description: migration_rollback
+    actions:
+      - migration_rollback
+
+  16:
+    description: autoloader
+    actions:
+      - autoloader
+
+  17:
+    description: cache_clear
+    actions:
+      - cache_clear

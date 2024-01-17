@@ -1,0 +1,32 @@
+type Query {
+
+    projects(
+        name: String @rules(apply: ["string", "max:128"]) @eq
+        slug: String @rules(apply: ["string", "max:128"]) @eq
+        status: project_status @eq
+    ): [Project] @paginate
+
+    project(
+        id: ID! @eq
+    ): Project @find
+
+}
+
+extend type Mutation {
+
+    "Создание проекта"
+    create_project(input: ProjectInput! @spread): Project @create
+
+    "Изменение проекта"
+    update_project(
+        id: ID!
+        input: ProjectInput! @spread
+    ): Project @update
+
+    "Удаление проекта"
+    delete_project(id: ID!): Project @delete
+
+    "Перевыпуск токена проекта"
+    refresh_project_token(id: ID!): Project
+
+}

@@ -1,0 +1,16 @@
+"Сrm статус"
+type CrmStatus {
+    id: ID!
+    project: Project!
+    name: String!
+    title: String!
+    crm_id: Int!
+}
+
+"Сrm статус"
+input CrmStatusInput {
+    project_id: ID! @rules(apply: ["exists:projects,id"])
+    name: String! @rules(apply: ["string", "max:128"])
+    title: String! @rules(apply: ["string", "max:128"])
+    crm_id: Int!
+}

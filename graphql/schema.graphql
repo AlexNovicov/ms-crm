@@ -1,0 +1,5 @@
+#import ../vendor/profilancegroup/backend-sdk/src/GraphQL/type.graphql
+
+#import type/*.graphql
+#import type/support/*.graphql
+#import schema/*.graphql

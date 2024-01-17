@@ -1,0 +1,25 @@
+actions:
+  install:
+    presets:
+      - yarn_install
+
+  build:
+    presets:
+      - yarn_run_prod
+
+macros:
+  1:
+    description: install и build
+    actions:
+      - install
+      - build
+
+  10:
+    description: build
+    actions:
+      - build
+
+  11:
+    description: install
+    actions:
+      - install

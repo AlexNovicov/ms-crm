@@ -1,0 +1,15 @@
+type Mutation {
+
+    "Создание crm поля"
+    create_crm_field(input: CrmFieldInput! @spread): CrmField @create
+
+    "Изменение поля"
+    update_crm_field(
+        id: ID!
+        input: CrmFieldInput! @spread
+    ): CrmField @update
+
+    "Удаление поля"
+    delete_crm_field(id: ID!): CrmField @delete
+
+}

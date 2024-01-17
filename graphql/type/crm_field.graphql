@@ -1,0 +1,56 @@
+"Сrm поле"
+type CrmField {
+    id: ID!
+    project: Project!
+    name: String!
+    title: String!
+    crm_id: Int!
+    crm_entity: crm_field_crm_entity!
+    crm_type: crm_field_crm_type!
+    crm_enum: String
+    entity: crm_field_entity!
+    entity_field: String!
+    type: crm_field_type
+    type_format: String
+}
+
+"Сrm поле"
+input CrmFieldInput {
+    project_id: ID! @rules(apply: ["exists:projects,id"])
+    name: String! @rules(apply: ["string", "max:128"])
+    title: String! @rules(apply: ["string", "max:128"])
+    crm_id: Int!
+    crm_entity: crm_field_crm_entity!
+    crm_type: crm_field_crm_type!
+    crm_enum: String @rules(apply: ["string", "max:16"])
+    entity: crm_field_entity!
+    entity_field: String! @rules(apply: ["string", "max:32"])
+    type: crm_field_type
+    type_format: String @rules(apply: ["string", "max:16"])
+}
+
+"Тип crm поля"
+enum crm_field_crm_type {
+    text @enum(value: "text")
+    numeric @enum(value: "numeric")
+    bool @enum(value: "bool")
+    city @enum(value: "city")
+}
+
+"Тип поля"
+enum crm_field_type {
+    default @enum(value: 1)
+    date @enum(value: 2)
+}
+
+"Crm сущность для поля"
+enum crm_field_crm_entity {
+    lead @enum(value: 1)
+    contact @enum(value: 2)
+}
+
+"Тип поле"
+enum crm_field_entity {
+    order @enum(value: 1)
+    user @enum(value: 2)
+}

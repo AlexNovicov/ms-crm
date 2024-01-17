@@ -1,0 +1,39 @@
+"Проект"
+type Project {
+    id: ID!
+    name: String!
+    slug: String!
+    crm_subdomain: String
+    crm_default_responsible_user_id: String
+    crm_default_pipeline: String
+    crm_client_id: String
+    crm_secret: String
+    crm_access_token: String
+    crm_access_token_expires: Int
+    crm_refresh_token: String
+    status: project_status!
+    crm_fields: [CrmField]
+    crm_statuses: [CrmStatus]
+}
+
+"Проект"
+input ProjectInput {
+    name: String! @rules(apply: ["string", "max:128"])
+    slug: String! @rules(apply: ["string", "max:128"])
+    crm_subdomain: String @rules(apply: ["string", "max:128", "unique:projects,crm_subdomain"])
+    crm_default_pipeline: Int
+    crm_default_responsible_user_id: Int
+    crm_client_id: String @rules(apply: ["string", "max:64", "unique:projects,crm_client_id"])
+    crm_secret: String @rules(apply: ["string", "max:64"])
+    crm_access_token: String @rules(apply: ["string", "max:1024"])
+    crm_access_token_expires: Int
+    crm_refresh_token: String @rules(apply: ["string", "max:1024"])
+    status: project_status
+}
+
+"Статус проекта"
+enum project_status {
+    active @enum(value: 1)
+    inactive @enum(value: 2)
+    error @enum(value: 3)
+}
